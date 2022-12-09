@@ -1,6 +1,8 @@
 print("№5")
-n=int(input())
-summ=0
-for x in range(n+1):
-    summ += x**3
-print(summ)
+def f(n)
+    s = 0
+    for i in range(1,n+1):
+        s += i**3
+    return s
+n = int(input())
+print(f(n))
