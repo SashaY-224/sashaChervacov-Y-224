@@ -1,4 +1,3 @@
-u = open(r'D:\Users\Chervakov-A.S_Y-224_vvod2.txt')
 T = open(r'D:\Users\Chervakov-A.S_Y-224_vvod2.txt')
 
 f = open(r'D:\Users\Chervakov-A.S_Y-224_vivod2.txt', 'w+')
