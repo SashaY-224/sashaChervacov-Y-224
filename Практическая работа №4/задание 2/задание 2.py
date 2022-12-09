@@ -1,10 +1,11 @@
-print("№2")
-A=int(input())
-B=int(input())
-if A<B:
-    for x in range(A,B+1):
-        print(x,end=":")
-else:
-    for x in range(A,B-1,-1):
-        print(x,end=":")
+def f(a,b):
+    if a<=b:
+        for i in range(a,b+1):
+            print(i)
+    else:
+        for i in range(a,b+1,-1):
+            print(i)
+a = int(input())
+b = int(input())
+f(a,b)
 
