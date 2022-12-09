@@ -1,7 +1,7 @@
 T = open(r'D:\Users\Chervakov-A.S_Y-224_vvod1.txt')
 
 f = open(r'D:\Users\Chervakov-A.S_Y-224_vivod1.txt', 'w+')
-R = u.readlines()
+R = T.readlines()
 O = T.readlines(5)
 M = T.readlines(5)
 P = T.readlines(5)
