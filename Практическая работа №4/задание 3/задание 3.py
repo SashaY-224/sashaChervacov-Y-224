@@ -1,6 +1,7 @@
-print("№3")
-A=int(input())
-B=int(input())
-for x in range(A,B-1,-1):
-    if x%2!=0:
-        print(x,end=":")
+def f(a,b):
+    for i in range(a,b+1):
+        if i%2!=0:
+            print i
+a = int(input())
+b = int(input())
+f(a,b)
