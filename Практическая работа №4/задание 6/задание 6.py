@@ -1,6 +1,8 @@
 print("№6")
-n=int(input())
-Fact = 1
-for x in range(1,n+1):
-    Fact=x * Fact
-print(Fact)
+def f(n):
+    sum = 1
+    for i in range(1,n+1):
+        sum +=sum*i
+    return sum
+n = int(input())
+print(f(n))
