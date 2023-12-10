@@ -5,76 +5,30 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    static DataBaseOperations db = new DataBaseOperations();
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) throws SQLException {
-        DataBaseOperations db = new DataBaseOperations();
-        Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("Выберите команду:");
-            System.out.println("1. Пополнить счет");
-            System.out.println("2. Снять деньги со счет");
-            System.out.println("3. Перевести деньги с одного счета на другой");
-            System.out.println("4. Открыть счет");
-            System.out.println("5. Закрыть счет");
-            System.out.println("6. Получить историю операций");
-            System.out.println("7. Регистрация клиента");
-            System.out.println("8. Получить баланс счета");
-            System.out.println("9. Общая таблица");
-            System.out.println("0. Выйти");
-
+            printCommands();
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    System.out.println("Введите айди:");
-                    int id = scanner.nextInt();
-                    System.out.println("Введите сумму:");
-                    int money = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Дата:");
-                    String data = scanner.nextLine();
-                    db.addMoneyOnBankAccount(id, money, data);
+                    printAdd();
                     break;
                 case 2:
-                    System.out.println("Введите айди:");
-                        id = scanner.nextInt();
-                    System.out.println("Введите сумму:");
-                    money = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Дата:");
-                    data = scanner.nextLine();
-                    db.withdrawMoneyFromTheAccount(id, money, data);
+                    printWithdraw();
                     break;
                 case 3:
-                    System.out.println("Введите айди счета с которого нужно перевести деньги:");
-                    id = scanner.nextInt();
-                    System.out.println("Введите айди счета на который нужно перевести деньги:");
-                    int id1 = scanner.nextInt();
-                    System.out.println("Введите сумму:");
-                    money = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Дата:");
-                    data = scanner.nextLine();
-                    db.handOver(id, id1, money, data);
+                    printHandOver();
                     break;
                 case 4:
-                    System.out.println("Владелец счета:");
-                    String owner = scanner.nextLine();
-                    System.out.println("Введите начальную суммусумму:");
-                    money = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Дата:");
-                    data = scanner.nextLine();
-                    db.openAccount(data, owner, money);
+                    printOpenAccount();
                     break;
                 case 5:
-                    System.out.println("Введите айди счета который нужно закрыть:");
-                    id = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Дата:");
-                    data = scanner.nextLine();
-                    db.closeAccount(id, data);
+                    printCloseAccount();
                     break;
                 case 6:
                     List<OperationStory>  list = db.getHistoryOfOperation();
@@ -89,7 +43,7 @@ public class Main {
                     break;
                 case 8:
                     System.out.println("Введите айди счета:");
-                    id = scanner.nextInt();
+                    int id = scanner.nextInt();
                     System.out.println("Баланс: " + db.getBalance(id));
                     break;
                 case 9:
@@ -100,6 +54,7 @@ public class Main {
                     break;
                 case 0:
                     isRunning = false;
+                    db.closeConnection();
                     break;
                 default:
                     System.out.println("Некорректная команда. Пожалуйста, выберите снова.");
@@ -107,5 +62,68 @@ public class Main {
         }
     }
 
+    public static void printCommands(){
+        System.out.println("Выберите команду:");
+        System.out.println("1. Пополнить счет");
+        System.out.println("2. Снять деньги со счет");
+        System.out.println("3. Перевести деньги с одного счета на другой");
+        System.out.println("4. Открыть счет");
+        System.out.println("5. Закрыть счет");
+        System.out.println("6. Получить историю операций");
+        System.out.println("7. Регистрация клиента");
+        System.out.println("8. Получить баланс счета");
+        System.out.println("9. Общая таблица");
+        System.out.println("0. Выйти");
+    }
 
+    public static void printAdd(){
+        System.out.println("Введите айди:");
+        int id = scanner.nextInt();
+        System.out.println("Введите сумму:");
+        int money = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Дата:");
+        String data = scanner.nextLine();
+        db.addMoneyOnBankAccount(id, money, data);
+    }
+    public static void printWithdraw(){
+        System.out.println("Введите айди:");
+        int id = scanner.nextInt();
+        System.out.println("Введите сумму:");
+        int money = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Дата:");
+        String data = scanner.nextLine();
+        db.withdrawMoneyFromTheAccount(id, money, data);
+    }
+    public static void printHandOver(){
+        System.out.println("Введите айди счета с которого нужно перевести деньги:");
+        int id = scanner.nextInt();
+        System.out.println("Введите айди счета на который нужно перевести деньги:");
+        int id1 = scanner.nextInt();
+        System.out.println("Введите сумму:");
+        int money = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Дата:");
+        String data = scanner.nextLine();
+        db.handOver(id, id1, money, data);
+    }
+    public static void printOpenAccount(){
+        System.out.println("Владелец счета:");
+        String owner = scanner.nextLine();
+        System.out.println("Введите начальную суммусумму:");
+        int money = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Дата:");
+        String data = scanner.nextLine();
+        db.openAccount(data, owner, money);
+    }
+    public static void printCloseAccount(){
+        System.out.println("Введите айди счета который нужно закрыть:");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Дата:");
+        String data = scanner.nextLine();
+        db.closeAccount(id, data);
+    }
 }
