@@ -177,4 +177,12 @@ public class DataBaseOperations {
             throw new RuntimeException(e);
         }
     }
+    
+    public void closeConnection(){
+        try {
+            getConnection().close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
